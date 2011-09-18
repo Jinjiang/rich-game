@@ -55,6 +55,7 @@ body {
 	right: 5px;
 	top: 110px;
 	font-size: 12pt;
+	z-index: 10;
 }
 
 
