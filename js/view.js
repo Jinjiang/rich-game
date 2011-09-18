@@ -236,6 +236,7 @@ function ExtraView() {
 	};
 	this.gameOver = function (user) {
 		// console.log('Game Over!');
+		this.setBalance(user, 0);
 		broadcast(user, '杯具。。。你输了。。。');
 		$(window).unbind('keydown', keydown);
 		alert('游戏结束！' + user + '号玩家输了。。。');

@@ -50,6 +50,12 @@ body {
 	border-radius: 10px;
 	padding: 5px 10px;
 }
+#header #bg-music-ctrl {
+	position: absolute;
+	right: 5px;
+	top: 110px;
+	font-size: 12pt;
+}
 
 
 #map {

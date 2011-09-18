@@ -23,6 +23,10 @@ $('#btn-play').click(function () {
 	start = true;
 	$('#splash').hide();
 	$('#header, #map, #ctrl').show();
+	$('#bg-music-ctrl').click(function () {
+		$('audio')[0].pause();
+		$(this).remove();
+	});
 	resize();
 	game = new Game;
 });
