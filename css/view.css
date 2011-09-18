@@ -1,0 +1,303 @@
+body, input, button, select {
+	font-size: 9pt;
+	font-family: "Miscosoft JZheng", Consolas, Monaco;
+}
+input, button, select {
+	font-size: 100%;
+}
+body {
+	margin: 0;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#69c), to(#99c));
+	overflow: hidden;
+}
+
+
+#header {}
+
+#header-1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 20px 20px 20px 100px;
+	z-index: 2;
+}
+#header-2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px 100px 20px 20px;
+	z-index: 2;
+}
+#header .avatar {
+	width: 80px;
+	border: 3px black solid;
+	position: absolute;
+	top: 0;
+}
+#header-1 .avatar {
+	left: 0;
+	background: red;
+}
+#header-2 .avatar {
+	right: 0;
+	background: blue;
+}
+#header .balance {
+	font-size: 16pt;
+	font-weight: bold;
+	background: white;
+	border: 3px black solid;
+	border-radius: 10px;
+	padding: 5px 10px;
+}
+
+
+#map {
+	width: 960px;
+	height: 480px;
+	margin: auto;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+#map > div > div {
+	position: absolute;
+}
+#grid-list > div {
+	z-index: 1;
+	background: white;
+	background: -webkit-gradient(linear, 0 0, 70% 100%, from(white), to(#ccf));
+	width: 80px;
+	height: 80px;
+	border: 2px black solid;
+}
+#house-list > div {
+	z-index: 2;
+	background: yellow;
+	background: -webkit-gradient(linear, 0 0, 70% 100%, from(yellow), to(#ee0));
+	width: 80px;
+	height: 80px;
+	border: 2px black solid;
+}
+#person-list > div {
+	z-index: 3;
+	width: 50px;
+	height: 80px;
+	border: 2px black solid;
+	-webkit-transition: all 0.24s;
+}
+#block-list > div {
+	z-index: 4;
+	width: 80px;
+	height: 50px;
+	margin: 30px -15px 0;
+	background: url(sprites.png) no-repeat -300px -20px;
+/*	border: 2px black solid;
+*/	opacity: 1;
+}
+#building-list > div {
+	z-index: 5;
+	width: 50px;
+	height: 80px;
+	border: 2px black solid;
+}
+
+#grid-list,
+#house-list {
+	-webkit-transform: translate(240px, 100px) rotate(30deg) skewX(-30deg);
+}
+
+#house-list > div[data-owner="1"] {background: red;}
+#house-list > div[data-owner="2"] {background: blue;}
+
+#building-list > div {opacity: 0;}
+#building-list > div[data-level="1"] {opacity: 0.8; background: white url(sprites.png) no-repeat -220px -15px;}
+#building-list > div[data-level="2"] {opacity: 0.8; background: white url(sprites.png) no-repeat -530 -10;}
+#building-list > div[data-level="3"] {opacity: 1; background: white url(sprites.png) no-repeat -300 -100;}
+
+#grid-0 {top: 80px; left: 280px;}
+#grid-1 {top: 80px; left: 360px;}
+#grid-2 {top: 80px; left: 440px;}
+#grid-3 {top: 80px; left: 520px;}
+#grid-4 {top: 80px; left: 600px;}
+#grid-5 {top: 160px; left: 600px;}
+#grid-6 {top: 240px; left: 600px;}
+#grid-7 {top: 320px; left: 600px;}
+#grid-8 {top: 320px; left: 520px;}
+#grid-9 {top: 320px; left: 440px;}
+#grid-10 {top: 320px; left: 360px;}
+#grid-11 {top: 320px; left: 280px;}
+#grid-12 {top: 240px; left: 280px;}
+#grid-13 {top: 160px; left: 280px;}
+
+#house-1 {top: 0px; left: 360px;}
+#house-2 {top: 0px; left: 440px;}
+#house-3 {top: 0px; left: 520px;}
+#house-5 {top: 160px; left: 680px;}
+#house-6 {top: 240px; left: 680px;}
+#house-8 {top: 400px; left: 520px;}
+#house-9 {top: 400px; left: 440px;}
+#house-10 {top: 400px; left: 360px;}
+#house-12 {top: 240px; left: 200px;}
+#house-13 {top: 160px; left: 200px;}
+
+#map > div > div[data-offset="0"] {left: 430px; top: 30px;}
+#map > div > div[data-offset="1"] {left: 500px; top: 70px;}
+#map > div > div[data-offset="2"] {left: 570px; top: 110px;}
+#map > div > div[data-offset="3"] {left: 640px; top: 150px;}
+#map > div > div[data-offset="4"] {left: 710px; top: 190px;}
+#map > div > div[data-offset="5"] {left: 630px; top: 235px;}
+#map > div > div[data-offset="6"] {left: 550px; top: 280px;}
+#map > div > div[data-offset="7"] {left: 470px; top: 325px;}
+#map > div > div[data-offset="8"] {left: 400px; top: 285px;}
+#map > div > div[data-offset="9"] {left: 330px; top: 245px;}
+#map > div > div[data-offset="10"] {left: 260px; top: 205px;}
+#map > div > div[data-offset="11"] {left: 190px; top: 165px;}
+#map > div > div[data-offset="12"] {left: 270px; top: 120px;}
+#map > div > div[data-offset="13"] {left: 350px; top: 75px;}
+
+#building-1 {left: 580px; top: 25px;}
+#building-2 {left: 650px; top: 65px;}
+#building-3 {left: 720px; top: 105px;}
+#building-5 {left: 700px; top: 275px;}
+#building-6 {left: 620px; top: 320px;}
+#building-8 {left: 320px; top: 330px;}
+#building-9 {left: 250px; top: 290px;}
+#building-10 {left: 180px; top: 250px;}
+#building-12 {left: 200px; top: 80px;}
+#building-13 {left: 280px; top: 35px;}
+
+#user-1 {background: red url(../images/role-1.png) no-repeat center center;}
+#user-2 {background: blue url(../images/role-2.png) no-repeat center center;}
+
+#ctrl {
+	width: 100%;
+	height: 100px;
+	background: white;
+	position: absolute;
+	bottom: 0;
+	z-index: 2;
+	border-top: 3px black solid;
+}
+#ctrl-user-1 {
+	float: left;
+	width: 50%;
+	height: 100px;
+}
+#ctrl-user-2 {
+	float: right;
+	width: 50%;
+	height: 100px;
+}
+#ctrl .btn-tips {
+	float: left;
+	width: 120px;
+	height: 100px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#99c));
+	position: relative;
+}
+#ctrl-user-2 .btn-tips {
+	float: right;
+}
+#ctrl .wall {
+	margin: 0;
+	padding: 5px 10px;
+	height: 100px;
+	-webkit-box-sizing: border-box;
+	overflow: auto;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#99c));
+	color: #666;
+}
+/*#ctrl .progress {
+	height: 5px;
+	margin: auto;
+	background: rgba(128, 128, 128, 0.5);
+	width: 200px;
+	-webkit-transition: none;
+}
+#ctrl-user-1 .progress {
+	margin-right: 0;
+}
+#ctrl-user-2 .progress {
+	margin-left: 0;
+}
+#ctrl .progress[waiting] {
+	-webkit-transition: all 15s;
+	width: 1px;
+}*/
+#ctrl .wall li:last-child {
+	background: red;
+	padding: 5px 10px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 5px;
+	color: black;
+}
+#ctrl-user-2 .wall li:last-child {
+	background: blue;
+	color: white;
+}
+.btn-tips button {
+	background: white;
+	border: 3px black solid;
+	position: absolute;
+	padding: 0;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#99c));
+}
+.btn-tips .btn-main {
+	width: 2em;
+	height: 2em;
+	font-size: 20pt;
+	border-radius: 40px;
+	top: 20px;
+	left: 20px;
+	z-index: 1;
+	font-weight: bold;
+}
+.btn-tips .btn-sub {
+	width: 3.5em;
+	height: 2em;
+	border-radius: 10px;
+	font-size: 12pt;
+	top: 30px;
+	left: 50px;
+	padding-left: 20px;
+}
+
+
+#splash {
+	width: 640px;
+	border: 5px rgba(0, 0, 255, 0.8) solid;
+	border-radius: 30px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#99c));
+	text-align: center;
+	-webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+	font-size: 1.5em;
+	margin: auto;
+}
+#splash h1 {
+	color: blue;
+	text-shadow: 1px 1px 5px gray;
+	font-size: 3em;
+}
+#splash button {
+	padding: 20px 100px;
+	font-size: 32pt;
+	border: 2px black solid;
+	font-weight: bold;
+	border-radius: 20px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff0), to(#ee9));
+	cursor: pointer;
+}
+#splash button:hover {
+	background: -webkit-gradient(linear, 0 0, 0 100%, to(#ff0), from(#ee9));
+}
+#splash button:active {
+	background: -webkit-gradient(linear, 0 0, 0 100%, to(#ff0), from(#cc6));
+}
+#splash ul {
+	list-style: none;
+}
+
+
+

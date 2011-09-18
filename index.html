@@ -1,0 +1,130 @@
+<html>
+<head>
+	<title>大富翁 Web 版 - Rich Team</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/view.css" />
+</head>
+<body>
+
+<div id="splash">
+	<h1>大富翁 Web 版</h1>
+	<button id="btn-play">玩我！</button>
+	<p>Rich Team - HTML5研究小组</p>
+	<ul>
+		<li>张绍珑：筑梦师</li>
+		<li>张超：筑梦师</li>
+		<li>王潇：盗梦人</li>
+		<li>雷毅：盗梦人</li>
+		<li>黄雅哲：药剂师</li>
+		<li>赵锦江：小组代表</li>
+	</ul>
+</div>
+
+<div id="header" style="display: none">
+	<div id="header-1">
+		<img alt="" src="images/role-1.png" class="avatar" />
+		<div class="balance">0</div>
+	</div>
+	<div id="header-2">
+		<img alt="" src="images/role-2.png" class="avatar" />
+		<div class="balance">0</div>
+	</div>
+</div>
+
+<div id="map" style="display: none">
+	<div id="grid-list">
+		<div id="grid-0" data-type="empty"></div>
+		<div id="grid-1" data-type="house"></div>
+		<div id="grid-2" data-type="house"></div>
+		<div id="grid-3" data-type="empty"></div>
+		<div id="grid-4" data-type="house"></div>
+		<div id="grid-5" data-type="house"></div>
+		<div id="grid-6" data-type="house"></div>
+		<div id="grid-7" data-type="empty"></div>
+		<div id="grid-8" data-type="house"></div>
+		<div id="grid-9" data-type="house"></div>
+		<div id="grid-10" data-type="empty"></div>
+		<div id="grid-11" data-type="house"></div>
+		<div id="grid-12" data-type="house"></div>
+		<div id="grid-13" data-type="house"></div>
+	</div>
+	<div id="house-list">
+		<div id="house-1" data-owner="0"></div>
+		<div id="house-2" data-owner="0"></div>
+		<div id="house-3" data-owner="0"></div>
+		<div id="house-5" data-owner="0"></div>
+		<div id="house-6" data-owner="0"></div>
+		<div id="house-8" data-owner="0"></div>
+		<div id="house-9" data-owner="0"></div>
+		<div id="house-10" data-owner="0"></div>
+		<div id="house-12" data-owner="0"></div>
+		<div id="house-13" data-owner="0"></div>
+	</div>
+	<div id="person-list">
+		<div id="user-1" data-offset="0"></div>
+		<!-- <div id="user-1" data-offset="1"></div>
+		<div id="user-1" data-offset="2"></div>
+		<div id="user-1" data-offset="3"></div>
+		<div id="user-1" data-offset="4"></div>
+		<div id="user-1" data-offset="5"></div>
+		<div id="user-1" data-offset="6"></div> -->
+		<div id="user-2" data-offset="7"></div>
+		<!-- <div id="user-2" data-offset="8"></div>
+		<div id="user-2" data-offset="9"></div>
+		<div id="user-2" data-offset="10"></div>
+		<div id="user-2" data-offset="11"></div>
+		<div id="user-2" data-offset="12"></div>
+		<div id="user-2" data-offset="13"></div> -->
+	</div>
+	<div id="building-list">
+		<div id="building-1" data-level="0"></div>
+		<div id="building-2" data-level="0"></div>
+		<div id="building-3" data-level="0"></div>
+		<div id="building-5" data-level="0"></div>
+		<div id="building-6" data-level="0"></div>
+		<div id="building-8" data-level="0"></div>
+		<div id="building-9" data-level="0"></div>
+		<div id="building-10" data-level="0"></div>
+		<div id="building-12" data-level="0"></div>
+		<div id="building-13" data-level="0"></div>
+	</div>
+	<div id="block-list">
+		<!-- <div data-offset="2"></div>
+		<div data-offset="3"></div>
+		<div data-offset="11"></div>
+		<div data-offset="10"></div> -->
+	</div>
+</div>
+
+<div id="ctrl" style="display: none">
+	<div id="ctrl-user-1">
+		<div class="btn-tips">
+			<button class="btn-main">A</button>
+			<button class="btn-sub">S</button>
+		</div>
+		<!-- <div class="progress"></div> -->
+		<ul class="wall">
+		</ul>
+	</div>
+	<div id="ctrl-user-2">
+		<div class="btn-tips">
+			<button class="btn-main">[</button>
+			<button class="btn-sub">]</button>
+		</div>
+		<!-- <div class="progress"></div> -->
+		<ul class="wall">
+		</ul>
+	</div>
+</div>
+
+<audio src="audio/bg_music.mp3" autoplay loop></audio>
+
+<script src="js/jquery.js"></script>
+<script src="js/config.js"></script>
+<script src="js/model.js"></script>
+<script src="js/game.js"></script>
+<script src="js/view.js"></script>
+<script src="js/rich.js"></script>
+
+</body>
+</html>
