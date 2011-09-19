@@ -1,0 +1,23 @@
+.role-image {
+	width:100px;
+	height:120px;
+	position: absolute;
+	-webkit-transition: all linear 0.24s;
+	z-index: 200;
+}
+
+.block-viewer {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index: 300;
+}
+
+.block-image {
+	background:url(../images/block.png) no-repeat center center;
+	width:80px;
+	height:80px;
+	position:absolute;
+	visibility: hidden;
+	z-index: 201;
+}
