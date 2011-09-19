@@ -1,0 +1,147 @@
+body {
+}
+.magPerson1{
+	border:dotted 6px black;
+	z-index: 10;
+	position: absolute;
+	left:0;
+	top:0;
+	margin-top:0px; 
+	width:200px; 
+	height:200px;
+	background-color:#ffeeff;
+	display: none;
+}
+.magPerson2{
+	border:dotted 6px black;
+	z-index: 10;
+	position: absolute;
+	left:824px;
+	top:0;
+	margin-top:0px; 
+	width:200px; 
+	height:200px;
+	background-color:#ffeeff;
+	display: none;
+}
+
+.role {
+	background: url(../images/player01.png) no-repeat 0 0;
+	width:245px;
+	height:127px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 10;
+}
+.role-2 {
+	background: url(../images/player02.png) no-repeat 0 0;
+	left: 780px;
+}
+
+.role .money {
+	position:absolute;
+	left:135px;
+	top:95px;
+	font-size: 24px;
+	color:#333333;
+}
+
+.role .notice {
+	position:absolute;
+	left:135px;
+	top:135px;
+	width:200px;
+	border:2px solid #333333;
+	background: #ffffff;
+	padding:10px;
+	-webkit-border-radius: 8px;
+	-webkit-box-shadow: 2px 2px 5px rgba(0,0,0, 0.4);
+	-webkit-transition: -webkit-transform linear 0.25s;
+}
+
+.role .notice-hidden {
+	-webkit-transform: scale(0.1);
+	-webkit-transition: -webkit-transform ease-in 0.15s;
+	
+	background: -webkit-gridient()
+}
+.confirm-notice {
+	display:none;
+}
+.role .notice .tip {
+	padding: 0 0 6px;
+}
+.role .notice .btn {
+	display:inline-block;
+	background:#f1990d;
+	color:#ffffff;
+	padding:0 8px;
+	margin:0 5px 0 0;
+	line-height:28px;
+	-webkit-border-radius: 3px;
+	cursor: pointer;
+}
+
+.role-2 .money {
+	left:15px;
+}
+.role-2 .notice {
+	left:-100px;
+}
+
+
+.actions {
+	height:400px;
+	position: absolute;
+	left: 5px;
+	top: 360px;
+	z-index: 20;
+}
+.actions-2 {
+	left:885px;
+}
+
+.actions .block-item {
+	background: url(../images/block_item.png) no-repeat 0 0 ;
+	height:89px;
+	width:89px;
+	margin:0 0 2px 22px;
+	cursor: pointer;
+}
+.actions .block-item span {
+	display:block;
+	background: url(../images/map.png) no-repeat -405px -105px;
+	height:89px;
+	width:89px;
+}
+.actions .block-item span.update {
+	display:block;
+	background: url(../images/map.png) no-repeat -606px -105px;
+	height:89px;
+	width:89px;
+}
+.actions .block-item span.buy {
+	background: url(../images/map.png) no-repeat -605px -5px;
+}
+.actions .block-item-hidden {
+	cursor: default;
+	visibility: hidden;
+}
+
+.actions-2 .block-item {
+	background: url(../images/block_item_2.png) no-repeat 0 0;
+}
+
+.actions .saizi {
+	background: url(../images/saizi.png) no-repeat 0 0 ;
+	height:134px;
+	width:134px;
+	cursor: pointer;
+}
+.actions-2 .saizi {
+	background: url(../images/saizi2.png) no-repeat 0 0 ;
+}
+
+
+

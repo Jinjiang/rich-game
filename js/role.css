@@ -1,0 +1,21 @@
+body {
+	background: #ffffff url(bg.png) no-repeat 0 100px;
+	padding:0;
+	margin:0;
+}
+
+.role-image {
+	background:#ff0000;
+	width:100px;
+	height:120px;
+	position: absolute;
+	-webkit-transition: all linear 0.25s;
+}
+
+.block-image {
+	background:url(block.png) no-repeat 0 0;
+	width:50px;
+	height:50px;
+	position:absolute;
+	visibility: hidden;
+}

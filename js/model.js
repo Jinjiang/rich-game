@@ -11,7 +11,11 @@ function GridModel(index, type){
 	this.upgrade = function() {
 		if ( this.level < 3 ){
 			this.level += 1;
-			this.price = CONFIG.house[this.level].price;
+			if (this.level == 3){
+				this.price = -1;
+			}else{
+				this.price = CONFIG.house[this.level].price;
+			}
 			this.charge = CONFIG.house[this.level].charge;
 			return this.level;
 		}

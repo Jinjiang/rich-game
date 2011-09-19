@@ -14,9 +14,9 @@ function Game() {
 	var personMap = {};
 	var blockMap = {};
 
-	var mapView = new MapView();
-	var personView = new PersonView();
-	var blockView = new BlockView();
+	var mapView = new MapView(mapData,1024,768,SCALE,280,150,imageCache['map'],imageCache['bg']);	
+	var personView = new PersonView(mapView);
+	var blockView = new BlockView(mapView, imageCache['map']);
 	var extraView = new ExtraView();
 
 	/**
@@ -53,12 +53,6 @@ function Game() {
 		}
 	}
 
-	function getAnotherUser(user) {
-		if (user == 1) return 2;
-		if (user == 2) return 1;
-		return -1;
-	}
-
 	/**
 		判断当前用户是否可以在当前位置放置路障
 		逻辑如下：
@@ -84,41 +78,8 @@ function Game() {
 	 */
 	function couldPay(user, index) {
 		var person = personMap[user];
-		var charge = getCharge(user, index);
-
-		return person.balance > charge;
-	}
-
-	function getCharge(user, index) {
 		var grid = gridList[index];
-		var another = getAnotherUser(user);
-		var gridCount = 1;
-
-		var charge = grid.charge;
-		var next = gridList[index + 1];
-		var prev = gridList[index - 1];
-		var next2 = gridList[index + 2];
-		var prev2 = gridList[index - 2];
-
-		if (next && next.owner == another) {
-			charge += next.charge;
-			gridCount++;
-		}
-		if (next && next.type == 'house' && next2 && next2.owner == another) {
-			charge += next2.charge;
-			gridCount++;
-		}
-
-		if (prev && prev.owner == another) {
-			charge += prev.charge;
-			gridCount++;
-		}
-		if (prev && prev.type == 'house' && prev2 && prev2.owner == another) {
-			charge += prev2.charge;
-			gridCount++;
-		}
-
-		return charge * gridCount;
+		return person.balance > grid.charge;
 	}
 
 	/**
@@ -128,23 +89,16 @@ function Game() {
 	function checkBlock(user, index) {
 		var person = personMap[user];
 		var start = person.index;
-
 		if (start > index) {
 			index += gridList.length;
 		}
-
 		for (var i = start + 1; i <= index; i++) {
 			var offset = i % gridList.length;
 			if (blockMap[offset]) {
 				return offset;
 			}
 		}
-
 		return -1;
-	}
-
-	function gameOver() {
-		this.go = this.confirm = this.cancel = this.block = function () {};
 	}
 
 
@@ -162,16 +116,15 @@ function Game() {
 		2.4.如果为别人的地，且现金不足，则游戏结束，算该用户战败
 	 */
 	function go(user, count) {
+		console.log(user, count);	
 		var person = personMap[user];
 		var index = (person.index + count) % gridList.length;
 		var blockIndex = checkBlock(user, index);
 		var grid;
-		var blocked;
 
-		// console.log('debug', index, blockIndex);
+		// console.log('debug', user, count, person, index, blockIndex);
 
 		if (blockIndex >= 0) {
-			blocked = true;
 			index = blockIndex;
 			if (index > person.index) {
 				count = index - person.index;
@@ -179,8 +132,13 @@ function Game() {
 			else {
 				count = index + gridList.length - person.index;
 			}
+			blockView.remove(index);
+			extraView.Notice(user, '你遇到了路障，只能走' + count + "步！");
+		}else {
+			extraView.Notice(user, '你这次可以走' + count + "步！");
 		}
-
+		
+		
 		personView.move(user, index);
 
 		setTimeout(function () {
@@ -188,14 +146,9 @@ function Game() {
 			grid = gridList[index];
 			person.index = index;
 
-			if (blocked) {
-				blockView.remove(index);
-			}
-
 			// 判断是否是路口
 			if (grid.type == 'empty') {
 				// TODO: alert('NO EVENT HAPPENS');
-				extraView.broadcast(user, 'EMPTY');
 				extraView.unlock(user);
 				return;
 			}
@@ -204,29 +157,32 @@ function Game() {
 			if (grid.owner == 0) {
 				// 尚无人购买的地
 				if (couldBuy(user, index)) {
-					extraView.confirmSpend(user, 'buy', grid.price);
+					extraView.confirmSpend(user, index, 'buy', grid.price);
 				}
 				else {
-					extraView.broadcast(user, 'NO_MONEY');
+					// TODO: alert('NO EVENT HAPPENS');
 					extraView.unlock(user);
 				}
 			}
 			else if (grid.owner == user) {
 				// 自己的地
 				if (couldBuy(user, index)) {
-					extraView.confirmSpend(user, 'upgrade', grid.price);
+					extraView.confirmSpend(user, index, 'upgrade', grid.price);
 				}
 				else {
-					extraView.broadcast(user, 'NO_MONEY');
+					// TODO: alert('NO EVENT HAPPENS');
 					extraView.unlock(user);
 				}
 			}
 			else {
 				// 别人的地
 				if (couldPay(user, index)) {
-					var charge = getCharge(user, index);
-					person.spend(charge);
-					personMap[grid.owner].earn(charge);
+					person.spend(grid.charge);
+					extraView.Notice(user, '你被扣了' + grid.charge + '现金给对手了，快加油！');
+					
+					personMap[grid.owner].earn(grid.charge);
+					extraView.Notice(grid.owner, '你从对方手里赚了' + grid.charge + '现金，继续啊！');
+					
 					extraView.setBalance(user, person.balance);
 					extraView.setBalance(grid.owner, personMap[grid.owner].balance);
 					extraView.unlock(user);
@@ -234,6 +190,9 @@ function Game() {
 				else {
 					// 如果没钱缴过路费就破产了！
 					extraView.gameOver(user);
+					
+					extraView.Notice(user, '不好意思，你输了这场游戏！');
+					extraView.Notice(grid.owner, '恭喜恭喜，你赢了这场游戏！');
 				}
 			}
 
@@ -255,15 +214,19 @@ function Game() {
 		
 		if(grid.owner == 0) {
 			grid.owner = user;
+			extraView.Notice(grid.owner, '恭喜你获得了这块地，继续加油！');
 		}
 		
 		else if(grid.owner == user) {	
 			grid.upgrade();
+			extraView.Notice(grid.owner, '你的土地升级到了 ' + grid.level + ' 级，继续加油！');
 		}
 
 		extraView.unlock(user);
 		extraView.setBalance(user, person.balance);
-		mapView.setMap(index, grid.owner, grid.level);
+		
+		mapView.setMap(index, grid.level, grid.owner);
+		mapView.drawByIndex(index);
 	}
 
 	/**
@@ -286,7 +249,7 @@ function Game() {
 		var person = personMap[user],
 			posIndex = person.index,
 			blockIndex = posIndex,
-			blockTime = 0,
+						blockTime = 0,
 			blockCount = person.blockCount;
 		
 			
@@ -294,25 +257,23 @@ function Game() {
 			
 			//设置路障状态
 			blockTime = 500;
+			blockMap[blockIndex] = true;
 			
 			var blockNumber = person.useBlock();
 
 			if (blockNumber >= 0) {
-				blockMap[blockIndex] = true;
 				//添加路障UI
 				blockView.add(blockIndex);
 				//更新路障数目
 				extraView.setBlockNumber(user, blockNumber);
+				
+				extraView.Notice(user, '你在这里放了一个路障!');
 			}
 
-			setTimeout(function(){
-				extraView.unlock(user);
-			}, blockTime);
 		}
-		else {
-			extraView.broadcast(user, 'BLOCK_ERROR');
+		setTimeout(function(){
 			extraView.unlock(user);
-		}
+		}, blockTime);
 	}
 
 
