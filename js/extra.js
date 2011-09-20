@@ -70,7 +70,7 @@ ExtraView.prototype.addPerson  = function(userId){
 	})
 	
 	ui['user' + userId].confirm.delegate('.cancel-btn' ,'click',function(){
-		game.cancal(userId);
+		game.cancel(userId);
 		ui['user' + userId].confirm.hide();
 	})
 	
