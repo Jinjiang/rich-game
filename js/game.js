@@ -106,8 +106,8 @@ function Game() {
 		控制当前用户向前移动
 		逻辑如下：
 		1.判断是否有路障
-		1.1.如果有路障，则讲用户移动到路障处，同时消除该路障
-		1.2.如果没有路障，则将用户移动到制定的位置
+		1.1.如果有路障，则将用户移动到路障处，同时消除该路障
+		1.2.如果没有路障，则将用户移动到指定的位置
 		setTimeout
 		2.判断当前位置的地况
 		2.1.如果为无人购买的空地，且现金充足，则询问是否购买
@@ -133,6 +133,7 @@ function Game() {
 				count = index + gridList.length - person.index;
 			}
 			blockView.remove(index);
+		    blockMap[index] = false;
 			extraView.Notice(user, '你遇到了路障，只能走' + count + "步！");
 		}else {
 			extraView.Notice(user, '你这次可以走' + count + "步！");
